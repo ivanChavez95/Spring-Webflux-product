@@ -1,6 +1,7 @@
 package com.nttdata.product.service;
 
 import com.nttdata.product.model.dto.ClientDto;
+import com.nttdata.product.model.dto.CompanyDto;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
@@ -12,19 +13,19 @@ public class CompanyRestService {
     public CompanyRestService(WebClient webclient){this.webclient = webclient;}
 
     //Calls all Company Clients
-    public List<ClientDto> findAllCompanies(){
+    public List<CompanyDto> findAllCompanies(){
         return webclient.get().uri(FIND_ALL_COMPANIES)
                 .retrieve()
-                .bodyToFlux(ClientDto.class)
+                .bodyToFlux(CompanyDto.class)
                 .collectList()
                 .block();
     }
 
     //Finds a Company CLient by its ID
-    public ClientDto findCompanyById(String id){
-        return webclient.get().uri(FIND_COMPANY_BY_ID)
+    public CompanyDto findCompanyById(String id){
+        return webclient.get().uri(FIND_COMPANY_BY_ID,id)
                 .retrieve()
-                .bodyToMono(ClientDto.class)
+                .bodyToMono(CompanyDto.class)
                 .block();
     }
 

@@ -91,8 +91,8 @@ public class Productcontroller {
                     });
         });
     }
-    @GetMapping("/listProductsByPerson/{id}")
-    public Mono<ResponseEntity<Flux<ProductModel>>> listProductsByPerson(String id){
+    @GetMapping(path = "/listProductsByPerson/{id}")
+    public Mono<ResponseEntity<Flux<ProductModel>>> listProductsByPerson(@PathVariable String id){
         return Mono.just(
                 ResponseEntity.ok()
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -101,7 +101,7 @@ public class Productcontroller {
     }
 
     @GetMapping("/listProductsByCompany/{id}")
-    public Mono<ResponseEntity<Flux<ProductModel>>> listProductsByCompany(String id){
+    public Mono<ResponseEntity<Flux<ProductModel>>> listProductsByCompany(@PathVariable String id){
         return Mono.just(
                 ResponseEntity.ok()
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
